@@ -56,6 +56,20 @@ A video walkthrough [is available on YouTube](https://youtu.be/010AGcY4uoE).
    ```
 2. Create KMS encryption key: `aws kms create-key`. Keep note of its `KeyId` in
    the response. Note that each KMS key costs $1/month.
+   Include some descriptive information for reference later.
+
+   ```
+   $ aws kms create-key --description "for awspics"
+   ```
+
+   The output from the create-key should include a `KeyId` field.
+   Use that when setting an alias for the key.
+   Alias appears on the kms console key list making it easier to identify what the key is used for.
+
+   ```
+   $ aws kms create-alias --alias-name alias/awspics --target-key-id xxx
+   ```
+
 3. Create CloudFront Key Pair, take note of the key pair ID and download the
    private key:
    <https://console.aws.amazon.com/iam/home?region=us-east-1#/security_credential>.
